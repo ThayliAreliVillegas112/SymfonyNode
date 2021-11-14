@@ -23,11 +23,11 @@ router.get('/:id', async (req, res) =>{
 });
 
 router.post('/create', async (req, res)=> {
-    const { office_code, address } = req.body;
+    const { office_code, adress } = req.body;
     // var dateCreated = new Date().toISOString();
     //var dateCreated2 = new Date().toLocaleString();
     const office ={
-        office_code, address
+        office_code, adress
     };
 
     await pool.query('INSERT INTO office set ?', [office]);
@@ -39,9 +39,9 @@ router.post('/create', async (req, res)=> {
 });
 router.post('/update/:id', async (req, res)=>{
     const { id } = req.params;
-    const { office_code, address } = req.body;
+    const { office_code, adress } = req.body;
 
-    const office = { office_code, address };
+    const office = { office_code, adress };
 
      await pool.query('UPDATE office SET ? WHERE id = ?', [office, id]);
         res.json({

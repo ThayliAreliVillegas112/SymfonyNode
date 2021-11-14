@@ -60,19 +60,7 @@ const getOffice = () => {
     });
 };
 
-const registerOffice = async () => {
-    let office_code = document.getElementById('office_code_register').value;
-    let adress = document.getElementById('adress2_register').value;
 
-    await $.ajax({
-        type: 'POST',
-        url: 'http://localhost:4000/offices/create',
-        data: { office_code, adress }
-    }).done(function (res) {
-       
-
-    });
-};
 
 const updateOffice = async () =>{
     let id = document.getElementById('id2_update').value;
@@ -81,7 +69,7 @@ const updateOffice = async () =>{
     
     console.log(id);
 
-    $.ajax({
+    await $.ajax({
         type: 'POST', 
         url: 'http://localhost:4000/offices/update/' + id,
         data:{office_code, adress}
@@ -98,5 +86,19 @@ const deleteOffice = async () => {
     }).done(res => {
         console.log(res);
         //getoffice();
+    });
+};
+
+const registerOffice = async () => {
+    let office_code = document.getElementById('office_code_register').value;
+    let adress = document.getElementById('adress2_register').value;
+
+    await $.ajax({
+        type: 'POST',
+        url: 'http://localhost:4000/offices/create',
+        data: { office_code, adress }
+    }).done(function (res) {
+       console.log(res);
+
     });
 };
