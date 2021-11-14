@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="text-center bg-info">
+        <h3>
+            Lista de Empleados
+        </h3>
+    </div>
+    <table id="tabla" class="text-center table table-striped">
+    </table>
+    <br>
+    <a href="create.html" class="btn btn-outline-primary" style="float: right; margin-right: 60px;" role="button">Registrar</a>
+    <br>
+    <br>
+    <!-- Tabla Office-->
+
+    <div class="text-center bg-info">
+        <h3>
+            Lista de Offices
+        </h3>
+    </div>
+    <table id="tabla2" class="text-center table table-striped">
+    </table>
+    <br>
+    <a href="create.html" class="btn btn-outline-primary" style="float: right; margin-right: 60px;" role="button">Registrar</a>
+    
+    <!-- Modal detalles employee -->
+    <div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" id="name" disabled>
+                    <label>Address:</label>
+                    <input type="text" class="form-control" id="adress" disabled>
+                    <label>Salary</label>
+                    <input type="number" class="form-control" id="salary" disabled>
+                    <label>Registered:</label>
+                    <input type="datetime" class="form-control" id="registered" disabled>
+                    <label>Updated:</label>
+                    <input type="datetime" class="form-control" id="updated" disabled>
+                    <label>Estado:</label>
+                    <input type="text" class="form-control" id="status" disabled>
+                    <label>Id Office:</label>
+                    <input type="text" class="form-control" id="idOffice" disabled>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- MODAL DELETE  employee-->
+    <div class="modal fade" id="delete2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles del producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="deleteEmployee();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_delete">
+                        <label>¿Desea eliminar el producto?</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+           </div>
+        </div>
+    </div> 
+
+    <!-- Modal update employee -->
+    <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="updateEmployee();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_update">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" id="name_update">
+                        <label>Address:</label>
+                        <input type="text" class="form-control" id="adress_update">
+                        <label>Salary:</label>
+                        <input type="number" class="form-control" id="salary_update">
+                        <label>Registered:</label>
+                        <input type="datetime" class="form-control" id="registered_update" disabled>
+                        <label>Updated:</label>
+                        <input type="datetime" class="form-control" id="updated_update" disabled>
+                        <label>Id Office:</label>
+                        <input type="text" class="form-control" id="idOffice_update">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ****************************************************************** OFFICE  *************************************************************************-->
+    
+    <!-- Modal detalles office -->
+    <div class="modal fade" id="details2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Office code:</label>
+                    <input type="text" class="form-control" id="office_code" disabled>
+                    <label>Address:</label>
+                    <input type="text" class="form-control" id="adress2" disabled>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- MODAL DELETE  employee-->
+    <div class="modal fade" id="delete2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles de la Oficina</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="deleteOffice();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id2_delete">
+                        <label>¿Desea eliminar el producto?</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+           </div>
+        </div>
+    </div> 
+
+    <!-- Modal update office -->
+    <div class="modal fade" id="update2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="updateOffice();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id2_update">
+                        <label>Office code:</label>
+                        <input type="text" class="form-control" id="office_code_update">
+                        <label>Address:</label>
+                        <input type="text" class="form-control" id="adress2_update">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    
+    <script src="./controller/employeeController.js"></script> <!-- El controler debe ir primero para que lo lea -->
+    <script src="./controller/officeController.js"></script>
+    <script src="./main.js"></script>
+
+    <!--   ------------------------------------------------------------------------------------------------------------------------- -->
+
+</body>
+
+</html>
